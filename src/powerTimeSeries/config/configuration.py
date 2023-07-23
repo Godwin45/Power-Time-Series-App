@@ -2,7 +2,8 @@ from powerTimeSeries.constants import *
 import os
 import pandas as pd
 from powerTimeSeries.utils.common import read_yaml, create_directories
-from powerTimeSeries.entity.config_entity import (DataIngestionConfig)
+from powerTimeSeries.entity.config_entity import (DataIngestionConfig,
+                                                  DataTransformationConfig)
                                                 
 
 
@@ -33,3 +34,15 @@ class ConfigurationManager:
 
         return data_ingestion_config
     
+    def get_data_transformation_config(self) -> DataTransformationConfig:
+        config = self.config.data_transformation
+        
+        create_directories([config.root_dir])
+
+        data_transformation_config = DataTransformationConfig(
+            root_dir=Path(config.root_dir),
+            data=Path(config.data),
+          
+        )
+
+        return  data_transformation_config

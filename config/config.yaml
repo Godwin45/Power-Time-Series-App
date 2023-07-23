@@ -6,3 +6,7 @@ data_ingestion:
   source_URL: https://github.com/Godwin45/datasets/raw/main/PJME_hourly.zip
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion
+
+data_transformation:
+  root_dir: artifacts/data_ingestion
+  data: artifacts/data_ingestion/PJME_hourly.csv

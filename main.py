@@ -1,5 +1,7 @@
 from powerTimeSeries import logger
 from powerTimeSeries.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
+from powerTimeSeries.pipeline.stage_02_data_transformation import DataTransformationPipeline
+
 
 STAGE_NAME = "Data Ingestion stage"
 try:
@@ -10,3 +12,13 @@ try:
 except Exception as e:
         logger.exception(e)
         raise e
+
+STAGE_NAME = "Feature Engineering stage"
+try:
+   logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+   obj = DataTransformationPipeline()
+   obj.main()
+   logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+   logger.exception(e)
+   raise e
