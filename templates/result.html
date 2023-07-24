@@ -2,17 +2,36 @@
 <html>
 <head>
     <title>Future Predictions - Result</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <h1>Future Predictions - Result</h1>
     <h2>Date Range: {{ future_w_features.index.min() }} to {{ future_w_features.index.max() }}</h2>
 
-    <!-- Download button for the dataset -->
-    <a href="{{ url_for('download_csv', csv_data=future_w_features.to_csv(index=False)|urlencode) }}">
-        <button>Download Dataset</button>
-    </a>
+    <!-- Hidden input field to hold the CSV data -->
+    <input type="hidden" id="csv_data" value="{{ future_w_features.to_csv(index=False) }}">
 
-    <!-- Display the plot -->
-    <img src="{{ plot_image_path }}" alt="Future Predictions Plot" width="800" height="400">
+    <!-- Download link for the CSV dataset -->
+    <a id="download_link" href="#" download>Download Dataset</a>
+
+    <!-- Display the Plotly plot -->
+    <div id="plotly-plot"></div>
+    <script>
+        // Parse the Plotly JSON and display the plot
+        var plotlyData = {{ plot_json | safe }};
+        Plotly.newPlot('plotly-plot', plotlyData.data, plotlyData.layout);
+
+        // Function to create and download the CSV file when the link is clicked
+        function downloadCSV() {
+            var csvData = document.getElementById('csv_data').value;
+            var blob = new Blob([csvData], { type: 'text/csv' });
+            var url = window.URL.createObjectURL(blob);
+            var a = document.getElementById('download_link');
+            a.href = url;
+        }
+
+        // Attach the downloadCSV function to the download link's click event
+        document.getElementById('download_link').addEventListener('click', downloadCSV);
+    </script>
 </body>
 </html>

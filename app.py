@@ -1,9 +1,10 @@
 from powerTimeSeries.pipeline.predict import PredictionPipeline
 from flask import Flask, render_template, request, send_file
 import tkinter as tk
-import matplotlib.pyplot as plt
 import pandas as pd
+import plotly.graph_objs as go
 from io import BytesIO
+import os
 
 app = Flask(__name__)
 
@@ -25,28 +26,34 @@ def index():
                                                   "artifacts/training/model.json")
         future_w_features = prediction_pipeline.predict_future(start_date, end_date)
 
-        # Plot the graph for the predicted values
-        plt.figure(figsize=(10, 5))
-        plt.plot(future_w_features.index, future_w_features['pred'], color='b', marker='o', markersize=2, linestyle='-')
-        plt.title('Future Predictions')
-        plt.xlabel('Date')
-        plt.ylabel('Predicted Value')
-        plt.tight_layout()
+        # Create a Plotly scatter plot for the predicted values
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(x=future_w_features.index, y=future_w_features['pred'],
+                                 mode='markers+lines', marker=dict(size=4),
+                                 line=dict(width=1)))
 
-        # Save the plot as an image and return the image path
-        plot_image_path = 'static/plot.png'
-        plt.savefig(plot_image_path)
-        plt.close()
+        fig.update_layout(title='Future Predictions', xaxis_title='Date', yaxis_title='Predicted Value')
 
-        return render_template('result.html', future_w_features=future_w_features, plot_image_path=plot_image_path)
+        # Convert the Plotly figure to JSON to pass to the HTML template
+        plot_json = fig.to_json()
+
+        return render_template('result.html', future_w_features=future_w_features, plot_json=plot_json)
 
     return render_template('index.html')
 
 @app.route('/download', methods=['GET'])
 def download_csv():
-    csv_data = request.args.get('csv_data')
+    csv_data = request.args.get('csv_data', default='', type=str)  # Get the CSV data from the URL query string
     csv_filename = "future_predictions.csv"  # Hardcoded filename
-    return send_file(BytesIO(csv_data.encode()), as_attachment=True, attachment_filename=csv_filename)
+
+    # Save the predicted data to a CSV file in the 'static' folder
+    static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+    csv_file_path = os.path.join(static_folder, csv_filename)
+
+    with open(csv_file_path, 'w') as file:
+        file.write(csv_data)
+
+    return send_file(csv_file_path, as_attachment=True, download_name=csv_filename)
 
 if __name__ == '__main__':
     # Start the Tkinter main loop in a separate thread
