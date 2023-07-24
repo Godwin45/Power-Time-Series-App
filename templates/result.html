@@ -1,11 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Future Predictions - Result</title>
+    <title>Future Power Predictions</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #4db5ff; /* Pale Blue */
+            font-style: italic;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        #plotly-plot {
+            margin: 0 auto;
+            background-color: #333; /* Dark Grey */
+            width: 100%; /* Fill the website horizontally */
+        }
+
+        #download_link {
+            display: block;
+            margin: 20px auto;
+            font-size: 20px;
+            padding: 10px 30px; /* Increased padding */
+            background-color: #777; /* Grey */
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        #download_link:hover {
+            background-color: #666; /* Dark Grey */
+        }
+
+        /* Style the Plotly plot container */
+        #plotly-plot {
+            max-width: 1000px; /* Set a maximum width for the graph */
+            margin: 0 auto;
+        }
+
+        /* Style the calendar icon */
+        .calendar-icon {
+            color: #4db5ff; /* Pale Blue */
+            font-size: 30px;
+            margin-right: 5px;
+        }
+
+        /* Make the website responsive */
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            #plotly-plot {
+                max-width: 90%;
+            }
+
+            #download_link {
+                font-size: 18px;
+                padding: 8px 20px; /* Adjusted padding */
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Future Predictions - Result</h1>
+    <h1>Future Power Predictions</h1>
     <h2>Date Range: {{ future_w_features.index.min() }} to {{ future_w_features.index.max() }}</h2>
 
     <!-- Hidden input field to hold the CSV data -->
@@ -19,7 +98,8 @@
     <script>
         // Parse the Plotly JSON and display the plot
         var plotlyData = {{ plot_json | safe }};
-        Plotly.newPlot('plotly-plot', plotlyData.data, plotlyData.layout);
+        var plotlyLayout = plotlyData.layout;
+        Plotly.newPlot('plotly-plot', plotlyData.data, plotlyLayout, { responsive: true });
 
         // Function to create and download the CSV file when the link is clicked
         function downloadCSV() {

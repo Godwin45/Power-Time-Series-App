@@ -1,15 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Future Predictions</title>
+    <title>Future Power Forecast</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #4db5ff; /* Pale Blue */
+            font-style: italic;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        label {
+            font-size: 20px;
+            margin: 10px;
+        }
+
+        input[type="date"] {
+            font-size: 20px;
+            padding: 10px;
+            border: 1px solid #4db5ff; /* Pale Blue */
+            background-color: #222;
+            color: #fff;
+            border-radius: 5px;
+            width: 300px;
+            text-align: center;
+        }
+
+        button[type="submit"] {
+            font-size: 24px;
+            padding: 15px 40px;
+            background-color: #4db5ff; /* Pale Blue */
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button[type="submit"]:hover {
+            background-color: #003d99; /* Dark Blue */
+        }
+    </style>
 </head>
 <body>
-    <h1>Future Predictions</h1>
+    <h1>Future Power Forecast</h1>
     <form method="POST" action="/">
         <label for="start_date">Start Date:</label>
-        <input type="date" id="start_date" name="start_date" required>
+        <input type="date" id="start_date" name="start_date" required min="2018-08-03">
         <label for="end_date">End Date:</label>
-        <input type="date" id="end_date" name="end_date" required>
+        <input type="date" id="end_date" name="end_date" required max="2025-12-12">
         <button type="submit">Predict</button>
     </form>
 </body>

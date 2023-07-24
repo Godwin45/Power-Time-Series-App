@@ -6,6 +6,8 @@ scikit-learn
 xgboost
 Flask
 dvc
+plotly
+tk-tools
 notebook
 matplotlib
 seaborn
