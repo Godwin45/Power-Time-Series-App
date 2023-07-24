@@ -1,6 +1,5 @@
 from powerTimeSeries.pipeline.predict import PredictionPipeline
 from flask import Flask, render_template, request, send_file
-import tkinter as tk
 import pandas as pd
 import plotly.graph_objs as go
 from io import BytesIO
@@ -9,11 +8,6 @@ import threading
 
 app = Flask(__name__)
 
-def run_tkinter():
-    # Start the Tkinter main loop
-    root = tk.Tk()
-    root.withdraw()
-    root.mainloop()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -57,9 +51,6 @@ def download_csv():
     return send_file(excel_file_path, as_attachment=True, download_name=excel_filename)
 
 if __name__ == '__main__':
-    # Start the Tkinter main loop in the main thread
-    tkinter_thread = threading.Thread(target=run_tkinter)
-    tkinter_thread.start()
-
+  
     # Run Flask in the main thread with host='0.0.0.0' and port=8080
-    app.run(host='0.0.0.0', port=8080, threaded=True)
+    app.run()
