@@ -1,22 +1,20 @@
 # PowerForecast App
 
-
 ## Overview
 
 PowerForecast is an innovative and powerful application that revolutionizes the way we predict and forecast power consumption for the future. Powered by cutting-edge technology, the app provides accurate and insightful predictions to help businesses, industries, and individuals optimize their energy usage and plan for a sustainable future.
 
-![power2](https://github.com/Godwin45/Power-Time-Series-App/assets/71969710/c45e0947-0145-46a1-82e0-3455b0345348)
-
+![PowerForecast App](https://github.com/Godwin45/Power-Time-Series-App/assets/71969710/c45e0947-0145-46a1-82e0-3455b0345348)
 
 ## Key Features
 
 1. **Advanced Power Prediction:** PowerForecast utilizes state-of-the-art machine learning algorithms to analyze historical power consumption data and generate highly accurate predictions for the future. This allows users to proactively manage energy resources and make informed decisions.
 
 2. **User-Friendly Interface:** The app boasts a sleek and intuitive user interface, making it accessible to all users, regardless of their technical background. With just a few clicks, users can view detailed forecasts and gain valuable insights.
-![power1](https://github.com/Godwin45/Power-Time-Series-App/assets/71969710/01501f73-13f1-45c8-8927-f0c7791aa16c)
 
+![User-Friendly Interface](https://github.com/Godwin45/Power-Time-Series-App/assets/71969710/01501f73-13f1-45c8-8927-f0c7791aa16c)
 
-3. **AWS Deployment:** Built on the reliable and scalable AWS infrastructure, PowerForecast ensures seamless performance even during peak demand. Users can trust in the app's stability and reliability.
+3. **Heroku Deployment:** PowerForecast is deployed on the reliable and scalable Heroku platform, ensuring seamless performance even during peak demand. Users can trust in the app's stability and reliability.
 
 4. **CI/CD Integration:** The app is integrated with a continuous integration and continuous deployment (CI/CD) pipeline, ensuring a smooth development and release process. This allows for frequent updates and improvements without any disruption to user experience.
 
