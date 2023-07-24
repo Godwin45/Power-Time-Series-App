@@ -62,4 +62,4 @@ if __name__ == '__main__':
     tkinter_thread.start()
 
     # Run Flask in the main thread with host='0.0.0.0' and port=8080
-    app.run(host='0.0.0.0', port=8080, debug=True, threaded=True)
+    app.run(host='0.0.0.0', port=8080, threaded=True)
