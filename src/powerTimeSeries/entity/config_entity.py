@@ -13,3 +13,10 @@ class DataIngestionConfig:
 class DataTransformationConfig:
     root_dir: Path
     data: Path
+
+
+@dataclass(frozen=True)
+class TrainingConfig:
+    root_dir: Path
+    trained_model_path: Path
+    training_data: Path

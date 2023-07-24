@@ -10,3 +10,8 @@ data_ingestion:
 data_transformation:
   root_dir: artifacts/data_ingestion
   data: artifacts/data_ingestion/PJME_hourly.csv
+
+training:
+  root_dir: artifacts/training
+  training_data: artifacts/transformed_data/data.csv
+  trained_model_path: artifacts/training/model.json

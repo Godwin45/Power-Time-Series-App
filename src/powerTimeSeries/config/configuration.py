@@ -3,7 +3,8 @@ import os
 import pandas as pd
 from powerTimeSeries.utils.common import read_yaml, create_directories
 from powerTimeSeries.entity.config_entity import (DataIngestionConfig,
-                                                  DataTransformationConfig)
+                                                  DataTransformationConfig,
+                                                  TrainingConfig)
                                                 
 
 
@@ -46,3 +47,18 @@ class ConfigurationManager:
         )
 
         return  data_transformation_config
+
+    def get_training_config(self) -> TrainingConfig:
+        config = self.config.training
+
+        create_directories([
+                Path(config.root_dir)
+            ])
+
+        training_config = TrainingConfig(
+            root_dir=Path(config.root_dir),
+            trained_model_path=Path(config.trained_model_path),
+            training_data=Path(config.training_data),
+        )
+
+        return training_config
