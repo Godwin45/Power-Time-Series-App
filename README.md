@@ -38,8 +38,6 @@ PowerForecast is an innovative and powerful application that revolutionizes the 
 
 PowerForecast is the ultimate solution for all your power consumption prediction needs. Whether you are a business owner, energy analyst, or an environmentally conscious individual, this app will revolutionize the way you manage power consumption.
 
-*Join us in shaping a sustainable future with PowerForecast!*
-
-[Insert instructions to access the app and contribute to the project]
+**Access the app here:** [PowerForecast App](https://powertime-8530f80abcad.herokuapp.com/)
 
 **Note:** *This app is continuously evolving, and we welcome contributions from the developer community to enhance its features and capabilities. Let's work together to make the world a greener and more efficient place!*
